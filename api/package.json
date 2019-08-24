@@ -5,14 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "fix": "./node_modules/.bin/eslint --fix src --ext .js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^1.19.1",
+    "nodemon": "^1.19.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2",
     "sucrase": "^3.10.1"
   }
 }
