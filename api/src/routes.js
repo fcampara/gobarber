@@ -6,4 +6,4 @@ routes.get('/', (req, res) => {
   return res.json({ message: 'Hello Word' });
 });
 
-export default routes;
+export default routes
