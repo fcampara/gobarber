@@ -6,10 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
-    "db:run": "docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres",
-    "mongo:run": "docker run --name mongobarber -p 27017:27017 -d -t mongo",
-    "db:start": "docker start database",
-    "db:stop": "docker stop database",
+    "db:run": "docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres && docker run --name mongobarber -p 27017:27017 -d -t mongo",
+    "db:start": "docker start database && docker start mongobarber",
+    "db:stop": "docker stop database && docker stop mongobarber",
     "db:migrate": "npx sequelize db:migrate",
     "eslint:fix": "./node_modules/.bin/eslint --fix src --ext .js"
   },
