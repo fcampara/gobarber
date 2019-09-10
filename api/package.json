@@ -6,9 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
-    "db:run": "docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres && docker run --name mongobarber -p 27017:27017 -d -t mongo",
-    "db:start": "docker start database && docker start mongobarber",
-    "db:stop": "docker stop database && docker stop mongobarber",
+    "queue": "nodemon src/queue.js",
+    "db:redis": "docker run --name redisbarber -p 6379:6379 -d -t redis:alpine",
+    "db:mongo": "docker run --name mongobarber -p 27017:27017 -d -t mongo",
+    "db:postgres": "docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres",
+    "db:run": " npm run db:postgres && npm run db:mongo && npm run db:redis ",
+    "db:start": "docker start database && docker start mongobarber && docker start redisbarber",
+    "db:stop": "docker stop database && docker stop mongobarber && docker stop redisbarber",
     "db:migrate": "npx sequelize db:migrate",
     "eslint:fix": "./node_modules/.bin/eslint --fix src --ext .js"
   },
@@ -17,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "bee-queue": "^1.2.2",
     "date-fns": "^2.0.0-beta.5",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
