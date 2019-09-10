@@ -108,7 +108,7 @@ class AppointmentController {
 
     if (isBefore(dateWithSub, new Date())) return res.status(401).json({ error: 'You can only cancel appointments 2 hours in advance.' })
 
-    appointment.canceled_at = new Date(0)
+    appointment.canceled_at = new Date()
 
     await appointment.save()
 
